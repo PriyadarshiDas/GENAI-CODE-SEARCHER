@@ -4,7 +4,7 @@ from github import Github
 import re
 from itertools import islice
 
-# Configure your GitHub token here or via environment variable
+# Configure GitHub token here or via environment variable
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "")
 OLLAMA_URL = "http://localhost:11434/api/generate"
 
@@ -46,8 +46,6 @@ def github_code_search(query):
     return code_snippets
 
 def extract_github_query(response):
-    # Remove markdown code blocks and language tags
-    # e.g., ```python ... ```
     code_block = re.search(r"```(?:\w+)?\n(.*?)```", response, re.DOTALL)
     if code_block:
         return code_block.group(1).strip()
